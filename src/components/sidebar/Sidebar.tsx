@@ -37,7 +37,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
         gap-y-2
         bg-black
         h-full
-        w-[300px]
+        w-[280px]
         p-2
       '>
         <Box>
@@ -60,7 +60,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
       //MARK: Right/Main
       //INFO: Right/Main
       */}
-      <main className='h-full flex-1 overflow-y-auto py-2'>
+      <main className='h-full flex-1 overflow-y-auto py-2 md:pl-0 px-2'>
         {children}
       </main>
     </div>
