@@ -1,20 +1,28 @@
 {
   "MicroPython.executeButton": [
     {
-      "text": "▶",
-      "tooltip": "运行",
       "alignment": "left",
       "command": "extension.executeFile",
-      "priority": 3.5
+      "priority": 3.5,
+      "text": "▶",
+      "tooltip": "运行"
     }
   ],
   "MicroPython.syncButton": [
     {
-      "text": "$(sync)",
-      "tooltip": "同步",
       "alignment": "left",
       "command": "extension.execute",
-      "priority": 4
+      "priority": 4,
+      "text": "$(sync)",
+      "tooltip": "同步"
     }
-  ]
+  ],
+  "[typescript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "deno.enablePaths": [
+    "supabase/functions"
+  ],
+  "deno.lint": true,
+  "deno.unstable": true
 }
