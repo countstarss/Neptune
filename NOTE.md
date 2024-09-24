@@ -48,3 +48,8 @@ export default SupabaseProvider;
 ## npm i stripe
 
 ## useUser !!重要
+
+## npm i @radix-ui/react-dialog
+
+## useAuthModal 登录验证
+npm i zustand

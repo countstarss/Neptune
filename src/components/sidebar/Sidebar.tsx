@@ -18,16 +18,16 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
     {
       icon:HiHome,
       label:'Home',
-      active:pathName !== '/search',
+      active:pathName === '/home',
       href:'/home'
     },
     {
       icon:BiSearch,
       label:'Search',
-      active:pathName !== '/home',
+      active:pathName === '/search',
       href:'/search'
     },
-  ],[])
+  ],[pathName])
 
   return (
     <div className='flex h-full'>
