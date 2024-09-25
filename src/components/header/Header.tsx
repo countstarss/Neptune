@@ -2,12 +2,12 @@
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import { twMerge } from 'tailwind-merge';
-import BackAndForWardButton from './BackAndForwardButton';
-import HomeAndSearchButton from './HomeAndSearchButton';
+import BackAndForWardButton from './BackAndForward';
+import HomeAndSearchButton from './HomeAndSearch';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useUser } from '@/hooks/useUser';
 import toast from 'react-hot-toast';
-import Button from './Button';
+import Button from '../global/Button';
 import { useAuthModal } from '@/hooks/useAuthModal';
 
 interface Props {
