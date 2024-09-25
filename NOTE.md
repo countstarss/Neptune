@@ -1,15 +1,16 @@
 ## Button扩展写法
 
-
 ## router的多种用法
+
 - 路由切换动画支持
   使用 router 的生命周期方法，如 router.events.on()，可以监听路由事件，并结合 CSS 动画库或动画框架，在页面切换时实现平滑过渡动画。
-好处:
+  好处:
   - 提升用户体验，为复杂的页面切换创建流畅的动画效果。
 - 自定义路由行为
   next/router 提供了丰富的 API，如 push(), replace(), back() 等，允许开发者对路由行为进行自定义控制。
 
 ## 导出数据库的types
+
 `supabase gen types typescript --<proect name>  --schema <schema name> > supabase-types.ts`
 
 ## @supabase/auth-helpers-nextjs
@@ -44,7 +45,6 @@ const SupabaseProvider: React.FC<SupabaseProviderProps> = ({
 export default SupabaseProvider;
 ```
 
-
 ## npm i stripe
 
 ## useUser !!重要
@@ -52,4 +52,15 @@ export default SupabaseProvider;
 ## npm i @radix-ui/react-dialog
 
 ## useAuthModal 登录验证
-npm i zustand
+
+## npm i zustand
+
+## npm i @supabase/auth-ui-react
+
+## npm i @supabase/auth-ui-shared
+
+## npm i react-hook-form
+
+## npm i uniqid
+
+## npm i -D @types/uniqid

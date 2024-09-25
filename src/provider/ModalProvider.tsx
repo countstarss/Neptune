@@ -1,10 +1,11 @@
 'use client'
+import AuthModal from '@/components/AuthModal';
 import Modal from '@/components/global/Modal';
+import UploadModal from '@/components/UploadModal';
 import React, { useEffect, useState } from 'react';
 
 interface Props {
   // You can define any props needed here
-
 }
 
 const ModalProvider: React.FC<Props> = ({
@@ -23,14 +24,8 @@ const ModalProvider: React.FC<Props> = ({
 
   return (
     <>
-      <Modal
-        isOpen={true}
-        onChange={() => {}} 
-        title='Test modal'
-        description='Test modal'
-        >
-        TEST MODAL
-      </Modal>
+      <AuthModal />
+      <UploadModal />
     </>
   );
 };

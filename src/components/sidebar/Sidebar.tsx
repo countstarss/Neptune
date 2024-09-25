@@ -1,7 +1,7 @@
 'use client'
 import { usePathname } from 'next/navigation';
 import React, { useMemo } from 'react';
-import { BiSearch } from 'react-icons/bi';
+import { BiHome, BiSearch } from 'react-icons/bi';
 import { HiHome } from 'react-icons/hi';
 import Box from './SideBox';
 import Library from './Library';
@@ -15,6 +15,12 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ children }) => {
   const pathName = usePathname()
   const routes = useMemo(() => [
+    {
+      icon:BiHome,
+      label:'Sudo Home',
+      active:pathName === '/',
+      href:'/'
+    },
     {
       icon:HiHome,
       label:'Home',
