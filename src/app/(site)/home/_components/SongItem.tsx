@@ -50,6 +50,7 @@ const SongItem: React.FC<SongItemProps> = ({
           src={imagePath || '/images/liked.png'}
           fill
           alt={song.title}
+          className='object-cover'
         ></Image>
         <div className='absolute bottom-2 right-2'>
           <PlayButton />
