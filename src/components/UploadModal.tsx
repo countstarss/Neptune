@@ -145,20 +145,25 @@ const UploadModal = () => {
         className="flex flex-col gap-y-4"
       >
         <Input
+          className='text-white text-lg'
           id="title"
           disabled={isLoading}
           {...register('title', { required: true })}
-          placeholder="Song title"
+          placeholder="Enter Song Title"
+          autoComplete='false'
         />
         <Input
+          className='text-white text-lg'
           id="author"
           disabled={isLoading}
           {...register('author', { required: true })}
-          placeholder="Song author"
+          placeholder="Enter Song Author"
+          autoComplete='false'
         />
         <div>
-          <div className="pb-1">Select a song file</div>
+          <div className="pb-1 text-white text-lg">Select a song file</div>
           <Input
+            className='text-white text-lg'
             id="song"
             type="file"
             disabled={isLoading}
@@ -167,8 +172,9 @@ const UploadModal = () => {
           />
         </div>
         <div>
-          <div className="pb-1">Select an image</div>
+          <div className="pb-1 text-white text-lg">Select an image</div>
           <Input
+            className='text-white text-lg'
             id="image"
             type="file"
             disabled={isLoading}

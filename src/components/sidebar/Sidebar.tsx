@@ -16,16 +16,10 @@ const Sidebar: React.FC<SidebarProps> = ({ children }) => {
   const pathName = usePathname()
   const routes = useMemo(() => [
     {
-      icon:BiHome,
-      label:'Sudo Home',
-      active:pathName === '/',
-      href:'/'
-    },
-    {
       icon:HiHome,
       label:'Home',
-      active:pathName === '/home',
-      href:'/home'
+      active:pathName === '/',
+      href:'/'
     },
     {
       icon:BiSearch,
