@@ -7,7 +7,6 @@ import UserProvider from "@/provider/user-provider";
 import ModalProvider from "@/provider/ModalProvider";
 import ToasterProvider from "@/provider/toaster-provider";
 
-
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",

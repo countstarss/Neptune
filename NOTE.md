@@ -64,3 +64,5 @@ export default SupabaseProvider;
 ## npm i uniqid
 
 ## npm i -D @types/uniqid
+
+## npm install uploadthing @uploadthing/react

@@ -18,6 +18,7 @@
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/ssr": "^0.5.1",
     "@types/git": "^0.0.21",
+    "@uploadthing/react": "^7.0.2",
     "add": "^2.0.6",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
@@ -32,6 +33,7 @@
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "uniqid": "^5.4.0",
+    "uploadthing": "^7.0.2",
     "zustand": "^5.0.0-rc.2"
   },
   "devDependencies": {

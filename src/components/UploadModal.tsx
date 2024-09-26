@@ -1,194 +1,191 @@
 'use client'
-import React, { useEffect, useState } from 'react';
-import Modal from './global/Modal';
-import { useSessionContext, useSupabaseClient } from '@supabase/auth-helpers-react';
-import { useRouter } from 'next/navigation';
-import { useUploadModal } from '@/hooks/useUploadModal';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
-import Input from './global/Input';
-import Button from './global/Button';
-import toast from 'react-hot-toast';
-import { useUser } from '@/hooks/useUser';
-import uniqid from "uniqid"
-import { CreateClient } from '@/utils/supabase/client';
-import { supabase } from '@/utils/supabase/server';
 
-interface UploadModalProps {
-  // You can define any props needed here
-}
+import uniqid from 'uniqid'
+import { useState } from 'react'
+import { SubmitHandler, FieldValues, useForm } from 'react-hook-form'
+import toast from 'react-hot-toast'
+import { useRouter } from 'next/navigation'
 
-const UploadModal: React.FC<UploadModalProps> = ({ }) => {
+import { useUploadModal } from '@/hooks/useUploadModal'
+import { useUser } from '@/hooks/useUser'
 
-  const [isLoading,setIsLoading] = useState(false)
+import Modal from './global/Modal'
+import Input from './global/Input'
+import Button from './global/Button'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
-  // MARK: Auth
+const UploadModal = () => {
+  const [isLoading, setIsLoading] = useState(false)
   const uploadModal = useUploadModal()
-  const router = useRouter()
-  const { session } = useSessionContext()
-  // MARK: Upload
+  // MARK: Auth
   const { user } = useUser()
-  // const supabaseClient = useSupabaseClient()
-  // const supabaseClient = supabase
+  const supabaseClient = createClientComponentClient({
+    supabaseUrl: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY})
+  const router = useRouter()
 
-  const onChange = (open:boolean) => {
-    if(!open) {
+  const { register, handleSubmit, reset } = useForm<FieldValues>({
+    //@ts-ignore
+    author: '',
+    title: '',
+    song: null,
+    image: null
+  })
+
+  const onChange = (open: boolean) => {
+    if (!open) {
+      reset()
       uploadModal.onClose()
     }
   }
 
-  useEffect(() => {
-    if (session) {
-      router.refresh() // 登录成功后跳转到指定页面
-      uploadModal.onClose()
-    }
-  },[session,router,uploadModal.onClose])
-
-  // MARK: react-hook-form
-  const {
-    register,
-    handleSubmit,
-    reset
-  } = useForm<FieldValues>({
-    defaultValues:{
-      author:'',
-      title:'',
-      song:null,
-      image:null
-    }
-  })
-
-  const onSubmit:SubmitHandler<FieldValues> = async (values) => {
-    // upload to supabase
+  const onSubmit: SubmitHandler<FieldValues> = async (values) => {
     try {
       setIsLoading(true)
-      const songFile = values.song?.[0];
-      const imageFile = values.image?.[0];
-      if(!user || !songFile || !imageFile) {
+
+      const imageFile = values.image?.[0]
+      const songFile = values.song?.[0]
+
+      if (!imageFile || !songFile || !user) {
         toast.error('Missing fields')
         return
       }
 
-      const UniqID = uniqid()
+      const uniqueID = uniqid()
 
-      //MARK: upload song
-      const {
-        data: songData,
-        error:songError
-      } = await supabase
+      // MARK: Create Bucket
+      // INFO: Create Bucket once
+      // const { data:spngBucketData, error:songBucketError } = await supabaseClient.storage.createBucket('spotify-songs', {
+      //   public: true,
+      //   allowedMimeTypes: ['audio/*'],
+      //   fileSizeLimit: '10MB',
+      // })
+      // if (songBucketError) {
+      //   setIsLoading(false)
+      //   console.log(songBucketError)
+      //   return toast.error('songBucketError.')
+      // }
+
+      // const { data:imageBucketData, error:imageBucketError } = await supabaseClient.storage.createBucket('spotify-images', {
+      //   public: true,
+      //   allowedMimeTypes: ['image/*'],
+      //   fileSizeLimit: '1MB',
+      // })
+      // if (imageBucketError) {
+      //   setIsLoading(false)
+      //   console.log(imageBucketError)
+      //   return toast.error('imageBucketError.')
+      // }
+
+
+      // MARK: Upload song
+      const { data: songData, error: songError } = await supabaseClient
         .storage
-        .from('songs')
-        .upload(`song-${values.title}-${UniqID}`,songFile,{
-          cacheControl:'3600',
-          upsert:false
-        });
-
-      if(songError) {
-        setIsLoading(false)
-        return toast.error('Upload song failed')
-      }
-      toast.success('Upload song success')
-      //MARK: upload image
-      const {
-        data: imageData,
-        error:imageError
-      } = await supabase
-        .storage
-        .from('images')
-        .upload(`image-${values.title}-${UniqID}`,imageFile,{
-          cacheControl:'3600',
-          upsert:false
-        });
-
-      if(imageError) {
-        setIsLoading(false)
-        return toast.error('Upload image failed')
-      }
-      toast.success('Upload image success')
-
-      // MARK: insert song
-      const { 
-        error:supabaseError
-      } = await supabase
-        .from('songs')
-        .insert({
-          user_id:user.id,
-          author:values.author,
-          title:values.title,
-          song_path:songData.path,
-          image_path:imageData.path
+        .from('spotify-songs')
+        .upload(`song-${values.title}-${uniqueID}`, songFile, {
+          contentType:'audio/mpeg'
         })
-      if(supabaseError) {
+
+      if (songError) {
+        setIsLoading(false)
+        console.log(songError)
+        return toast.error('Failed song upload.')
+      }
+
+      
+
+      // MARK: Upload image
+      const { data: imageData, error: imageError } = await supabaseClient.storage
+        .from('spotify-images')
+        .upload(`image-${values.title}-${uniqueID}`, imageFile, {
+          contentType:"image"
+        })
+
+      if (imageError) {
+        setIsLoading(false)
+        console.log(imageError)
+        return toast.error('Failed image upload.')
+      }
+
+      // MARK: Insert song
+      const { error: supabaseError } = await supabaseClient.from('songs').insert({
+        user_id: user.id,
+        title: values.title,
+        author: values.author,
+        image_path: imageData.path,
+        song_path: songData.path
+      })
+
+      if (supabaseError) {
+        setIsLoading(false)
         return toast.error(supabaseError.message)
       }
 
-      // MARK: finish
       router.refresh()
       setIsLoading(false)
-      toast.success('Song Created')
+      toast.success('Song created!')
       reset()
       uploadModal.onClose()
     } catch (error) {
-      toast.error("Something went wrong")
-    }finally {
+      toast.error('Something went wrong')
+    } finally {
       setIsLoading(false)
     }
-    
   }
 
   return (
-
-    <Modal 
-      title='Welcome back'
-      description='Login to your account'
+    <Modal
+      title="Add a song"
+      description="Upload an mp3 file"
       isOpen={uploadModal.isOpen}
       onChange={onChange}
     >
-      <form 
+      <form
         onSubmit={handleSubmit(onSubmit)}
-        className='flex flex-col gap-y-4'
+        className="flex flex-col gap-y-4"
       >
         <Input
-          autoComplete='false'
-          id='title'
+          id="title"
           disabled={isLoading}
-          {...register('title',{ required: true })}
-          placeholder='Song title'
-          className='text-white text-xl'
+          {...register('title', { required: true })}
+          placeholder="Song title"
         />
         <Input
-          autoComplete='false'
-          id='author'
+          id="author"
           disabled={isLoading}
-          {...register('author',{ required: true })}
-          placeholder='Song author'
-          className='text-white text-xl'
+          {...register('author', { required: true })}
+          placeholder="Song author"
         />
         <div>
-          <div className='py-1 text-white'>Select a song file</div>
-          <Input 
-            id='song'
+          <div className="pb-1">Select a song file</div>
+          <Input
+            id="song"
             type="file"
-            {...register('song',{ required: true })}
-            accept='mp3'
-            className='text-white'
-          />
-          <div className='py-1 text-white'>Select a image file</div>
-          <Input 
-            id='image'
-            type="file"
-            {...register('image',{ required: true })}
-            accept='image'
-            className='text-white'
+            disabled={isLoading}
+            accept=".mp3"
+            {...register('song', { required: true })}
           />
         </div>
-        <Button 
-          type='submit'
-          title='Create'
+        <div>
+          <div className="pb-1">Select an image</div>
+          <Input
+            id="image"
+            type="file"
+            disabled={isLoading}
+            accept="image/*"
+            {...register('image', { required: true })}
+          />
+        </div>
+        <Button
           disabled={isLoading}
-        />
+          type="submit"
+          title='Create'
+        >
+          Create
+        </Button>
       </form>
     </Modal>
-  );
-};
+  )
+}
 
-export default UploadModal;
+export default UploadModal
