@@ -12,6 +12,7 @@ interface LayoutProps {
   children?: React.ReactNode
 }
 
+// NOTE: 这是Home路由下的模板
 export const Layout: React.FC<LayoutProps> = async ({
   songs,
   children
@@ -27,7 +28,7 @@ export const Layout: React.FC<LayoutProps> = async ({
       overflow-hidden
       overflow-y-auto
     '>
-      <div className='mt-2 mb-7 px-6' >
+      <div className='mt-2 mb-4 px-6' >
         {children}
       </div>
     </div>

@@ -7,6 +7,7 @@ interface TemplateProps {
   children:React.ReactNode
 }
 // MARK: Welcome
+// INFO: 这是所有页面的模板，添加一个背景 还有Header
 const Template: React.FC<TemplateProps> = ({
   children
 }) => {
@@ -19,7 +20,6 @@ const Template: React.FC<TemplateProps> = ({
       overflow-hidden
       overflow-y-auto
     '>
-
       <Header />
       {children}
     </div>

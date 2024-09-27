@@ -8,6 +8,7 @@ import SongItem from '../../home/_components/SongItem';
 import Loading from '@/components/global/LoadState';
 import LoadState from '@/components/global/LoadState';
 import SearchItem from './SearchItem';
+import SelectCategory from './SelectCategory';
 
 const SearchInput: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');  // 输入框中的值
@@ -42,16 +43,19 @@ const SearchInput: React.FC = () => {
 
   return (
     <div className='w-full'>
-      <Input
-        type="text"
-        size={30}
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}  // 更新输入框值
-        placeholder="Search for songs..."
-        className='
-          text-white text-xl outline-none  border-slate-200 border-[2px] 
-          lg:w-[400px] w-[full] h-14 rounded-3xl'
-      />
+      <div className='flex flex-row items-start'>
+        <Input
+          type="text"
+          size={30}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}  // 更新输入框值
+          placeholder="Search for songs..."
+          className='
+            text-white text-xl outline-none  border-slate-200 border-[2px] 
+            lg:w-1/2 w-full h-14 rounded-3xl'
+        />
+        <SelectCategory />
+      </div>
       {loading && <LoadState state='loading...' />}  {/* 显示加载状态 */}
       {error && <LoadState state='Error' />}  {/* 显示错误信息 */}
       {searchResult && searchResult.length > 0 ? (

@@ -41,6 +41,8 @@ const Header: React.FC<Props> = ({
     toast.success('loged out')
   }
 
+  // TODO: 小尺寸的Header最上面添加一个selector，用来选择类别
+  // TODO: 后期把一些内容放到userButton的DropDownMenu里
   return (
     <div className={twMerge(`
       h-fit

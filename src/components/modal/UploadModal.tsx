@@ -9,10 +9,10 @@ import { useRouter } from 'next/navigation'
 import { useUploadModal } from '@/hooks/useUploadModal'
 import { useUser } from '@/hooks/useUser'
 
-import Modal from './global/Modal'
-import Button from './global/Button'
+import Modal from '../global/Modal'
+import Button from '../global/Button'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import CustomInput from './global/CustomInput'
+import CustomInput from '../global/CustomInput'
 
 const UploadModal = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -37,6 +37,10 @@ const UploadModal = () => {
       reset()
       uploadModal.onClose()
     }
+  }
+  
+  const handleCloseModal = () => {
+    
   }
 
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
@@ -186,6 +190,7 @@ const UploadModal = () => {
           disabled={isLoading}
           type="submit"
           title='Create'
+          onClick={handleCloseModal}
         >
           Create
         </Button>

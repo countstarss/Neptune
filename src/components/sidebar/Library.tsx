@@ -5,10 +5,11 @@ import { TbPlaylist } from 'react-icons/tb';
 import { AiOutlinePlus } from 'react-icons/ai';
 import { useAuthModal } from '@/hooks/useAuthModal';
 import { useUser } from '@/hooks/useUser';
-import AuthModal from '../AuthModal';
+import AuthModal from '../modal/AuthModal';
 import { useUploadModal } from '@/hooks/useUploadModal';
 import { Song } from '@/lib/types';
-import MeidaItem from './MeidaItem';
+import MeidaItem from './LibraryItem';
+import LibraryItem from './LibraryItem';
 
 interface Props {
   // You can define any props needed here
@@ -36,6 +37,8 @@ const Library = ({
 
   return (
     // MARK: Library
+    // TODO: Library下面添加一个Selector，用来选择内容的类型： 专辑、歌手、歌单、电台、收藏、曲风
+    // TODO: 和小尺寸的Selector保持一致，使用全局的状态
     <>
       <AuthModal />
       <FlexBox>
@@ -67,7 +70,7 @@ const Library = ({
       <div className='flex flex-col flex-rowgap-y-2 mt-4 px-3 text-white gap-1'>
         {
           songs.map((item) => (
-            <MeidaItem
+            <LibraryItem
               onClick={() => { }}
               key={item.id}
               data={item}

@@ -28,22 +28,22 @@ const LikedSongs: React.FC<LikedSongsProps> = ({
         <ListItem
           image="/public/like.png"
           name="Liked"
-          href="liked"
+          href="/home/liked"
         />
         <ListItem
           image="/public/like.png"
           name="Liked"
-          href="liked"
+          href="/home/liked"
         />
         <ListItem
           image="/public/like.png"
           name="Liked"
-          href="liked"
+          href="/home/liked"
         />
         <ListItem
           image="/public/like.png"
           name="Liked"
-          href="liked"
+          href="/home/liked"
         />
       </div>
     </div>

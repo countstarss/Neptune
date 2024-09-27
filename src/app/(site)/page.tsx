@@ -27,8 +27,6 @@ export default function Home() {
 
   // 当没有用户信息时显示页面内容
   return (
-    <div className="flex h-full w-full">
-      {/* <LoadState state="Welcome back" /> */}
-    </div>
+    <></>
   );
 }

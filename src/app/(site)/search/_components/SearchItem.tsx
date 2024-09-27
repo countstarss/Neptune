@@ -53,12 +53,12 @@ const SearchItem: React.FC<MeidaItemProps> = ({
         '>
           <Image
             fill
-            src={imageUrl || '/images/liked.png'}
+            src={imageUrl || '/images/like.png'}
             alt='Midia image'
             // className='object-cover'
           />
         </div>
-        <div className='flex flex-col items-center justify-start text-white'>
+        <div className='flex flex-col items-start justify-start text-white'>
           <p className='font-semibold truncate'>{data.title}</p>
           <p className='font-light truncate'>{data.author}</p>
         </div>

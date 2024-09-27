@@ -1,4 +1,4 @@
-import AuthModal from '@/components/AuthModal';
+import AuthModal from '@/components/modal/AuthModal';
 import { useAuthModal } from '@/hooks/useAuthModal';
 import { useUser } from '@/hooks/useUser';
 import { Song } from '@/lib/types';
@@ -20,7 +20,7 @@ const LikedButton: React.FC<LikedButtonProps> = ({
 }) => {
   const router = useRouter()
 
-  const [isLiked,setIsLiked] = useState(false)
+  const [isLiked,setIsLiked] = useState(true)
   const Icon = isLiked ? AiFillHeart : AiOutlineHeart
 
   // MARK: Auth

@@ -9,7 +9,7 @@ interface MeidaItemProps {
   data:Song;
 }
 
-const MeidaItem: React.FC<MeidaItemProps> = ({
+const LibraryItem: React.FC<MeidaItemProps> = ({
   onClick,
   data
 }) => {
@@ -28,7 +28,7 @@ const MeidaItem: React.FC<MeidaItemProps> = ({
       onClick={handleClick}
       className='
         flex 
-        gap-2
+        gap-3
         p-2 w-full
         bg-neutral-800
         rounded-xl
@@ -53,12 +53,12 @@ const MeidaItem: React.FC<MeidaItemProps> = ({
           // className='object-cover'
         />
       </div>
-      <div className='flex flex-col items-center justify-start'>
-        <p className='font-semibold'>{data.title}</p>
-        <p className='font-light'>{data.author}</p>
+      <div className='flex flex-col justify-start items-start'>
+        <h1 className='font-semibold'>{data.title}</h1>
+        <h1 className='font-light'>{data.author}</h1>
       </div>
     </div>
   );
 };
 
-export default MeidaItem;
+export default LibraryItem;

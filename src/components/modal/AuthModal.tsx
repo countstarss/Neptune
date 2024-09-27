@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect } from 'react';
-import Modal from './global/Modal';
+import Modal from '../global/Modal';
 import { useSessionContext, useSupabaseClient } from '@supabase/auth-helpers-react';
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';

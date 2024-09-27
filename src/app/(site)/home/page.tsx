@@ -9,14 +9,21 @@ interface Props {
   
 }
 
+// MARK: 首页所有内容
 export const HomePage: React.FC<Props> = async ({
   
 }) => {
   const songs = await getSongs()
   return (
-    // MARK: Newest Songs
     < div className='mt-2 mb-7 px-6' >
+      {/* 
+      // MARK: Liked Songs
+       */}
       <LikedSongs />
+
+      {/* 
+      MARK: Newest Songs 
+      */}
       <div className='flex justify-between items-center'>
         <h1 className='text-white text-3xl font-semibold'>
           Newest Songs
