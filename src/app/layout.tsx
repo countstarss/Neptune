@@ -7,6 +7,7 @@ import UserProvider from "@/provider/user-provider";
 import ModalProvider from "@/provider/ModalProvider";
 import ToasterProvider from "@/provider/toaster-provider";
 import { getSongsByUserId } from "@/actions/getSongsByUserId";
+import Player from "@/components/Player";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -45,6 +46,7 @@ export default async function RootLayout({
             <ModalProvider />
             <Sidebar userSongs={userSongs}>
               {children}
+              <Player />
             </Sidebar>
           </UserProvider>
         </SupabaseProvider>
