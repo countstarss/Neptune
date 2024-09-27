@@ -10,9 +10,9 @@ import { useUploadModal } from '@/hooks/useUploadModal'
 import { useUser } from '@/hooks/useUser'
 
 import Modal from './global/Modal'
-import Input from './global/Input'
 import Button from './global/Button'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import CustomInput from './global/CustomInput'
 
 const UploadModal = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -144,7 +144,7 @@ const UploadModal = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-y-4"
       >
-        <Input
+        <CustomInput
           className='text-white text-lg'
           id="title"
           disabled={isLoading}
@@ -152,7 +152,7 @@ const UploadModal = () => {
           placeholder="Enter Song Title"
           autoComplete='false'
         />
-        <Input
+        <CustomInput
           className='text-white text-lg'
           id="author"
           disabled={isLoading}
@@ -162,7 +162,7 @@ const UploadModal = () => {
         />
         <div>
           <div className="pb-1 text-white text-lg">Select a song file</div>
-          <Input
+          <CustomInput
             className='text-white text-lg'
             id="song"
             type="file"
@@ -173,7 +173,7 @@ const UploadModal = () => {
         </div>
         <div>
           <div className="pb-1 text-white text-lg">Select an image</div>
-          <Input
+          <CustomInput
             className='text-white text-lg'
             id="image"
             type="file"

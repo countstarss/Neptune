@@ -9,10 +9,11 @@ import { useUser } from '@/hooks/useUser';
 import toast from 'react-hot-toast';
 import Button from '../global/Button';
 import { useAuthModal } from '@/hooks/useAuthModal';
+import { BiUser } from 'react-icons/bi';
 
 interface Props {
   // You can define any props needed here
-  children:React.ReactNode;
+  children?:React.ReactNode;
   className?:string;
 }
 
@@ -84,11 +85,12 @@ const Header: React.FC<Props> = ({
                 title="Logout" 
                 className='bg-white px-6 py-2'
               />
-              <Button 
-                onClick={()=> {}}
+              <div 
                 title="User" 
-                className='bg-white px-6 py-2'
-              />
+                className='w-[40px] h-[40px] bg-white p-3 rounded-full flex items-center justify-center cursor-pointer'
+              >
+                <BiUser size={20} className='font-bold'/>
+              </div>
             </div>
           ) : (
             <div className='

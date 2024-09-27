@@ -66,3 +66,5 @@ export default SupabaseProvider;
 ## npm i -D @types/uniqid
 
 ## npm install uploadthing @uploadthing/react
+
+## npm i query-string

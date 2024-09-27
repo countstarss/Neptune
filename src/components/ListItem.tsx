@@ -46,7 +46,7 @@ const ListItem: React.FC<Props> = ({
         */}
         <Image src="https://images.cubox.pro/1727094042834/208618/image.png" fill className='object-cover' alt="image"/>
       </div>
-      <p className='font-medium truncate py-5'>{name}</p>
+      <p className='font-medium truncate py-5 text-white'>{name}</p>
 
       <div className='
         absolute

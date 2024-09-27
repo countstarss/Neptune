@@ -12,12 +12,16 @@ const NewestContent = ({
   songs
 }: NewestContentPageProps) => {
   
-  if(songs.length === 0) {
-    return (
-      <div className='mt-4 text-white text-lg'>
-        No Songs Available
-      </div>
-    )
+  if(songs) {
+    if(songs.length === 0) {
+      return (
+        <div className='mt-4 text-white text-lg'>
+          No Songs Available
+        </div>
+      )
+    }
+  }else {
+    return
   }
   const onClick = (id:string) => {
 
