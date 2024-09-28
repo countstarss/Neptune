@@ -15,10 +15,10 @@ export const getLikedSongs = async ():Promise<Song[]> => {
   // NOTE: 从Session中获取的user，则是决定了你能获取哪些内容（当前Session的user下）
   const {
     data: {
-      session
+      user
     },
     error:SessionError
-  } = await supabase.auth.getSession()
+  } = await supabase.auth.getUser()
 
   if(SessionError) {
     console.log(SessionError)
@@ -28,7 +28,8 @@ export const getLikedSongs = async ():Promise<Song[]> => {
   const { data,error } = await supabase
     .from('liked_songs')
     .select('*,songs(*)')
-    .eq('user_id',session?.user?.id)
+    // .eq('user_id',session?.user?.id)
+    .eq('user_id',user?.id)
     .order('created_at',{ ascending: false })
 
     // NOTE: supabase.from('table_name').select('*,songs(*)') 这种写法的作用类似于 MongoDB 中的嵌套数据结构，
