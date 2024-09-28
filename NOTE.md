@@ -67,4 +67,6 @@ export default SupabaseProvider;
 
 ## npm install uploadthing @uploadthing/react
 
-## npm i query-string
+## npm i @radix-ui/react-slider
+
+## npm i use-sound

@@ -59,7 +59,7 @@ const SearchItem: React.FC<MeidaItemProps> = ({
             // className='object-cover'
           />
         </div>
-        <div className='flex flex-col items-start justify-start text-white'>
+        <div className='flex flex-col items-start justify-start text-white w-[120px]'>
           <p className='font-semibold truncate'>{data.title}</p>
           <p className='font-light truncate'>{data.author}</p>
         </div>

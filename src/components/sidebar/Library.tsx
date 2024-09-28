@@ -74,6 +74,10 @@ const Library = ({
               onClick={() => { }}
               key={item.id}
               data={item}
+              className='hover:scale-105
+                hover:bg-neutral-700
+                  transition
+                  origin-left'
             />
           ))
         }

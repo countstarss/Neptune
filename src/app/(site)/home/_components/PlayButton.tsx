@@ -29,7 +29,7 @@ const PlayButton: React.FC<PlayButtonProps> = ({
         grop-shadow-md
         right-5
         group-hover:bg-green-500
-        group-hover:scale-110
+        hover:scale-110
         group-hover:opacity-100
         cursor-pointer
       '>

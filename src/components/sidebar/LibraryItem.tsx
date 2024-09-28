@@ -2,16 +2,19 @@ import useLoadImage from '@/hooks/useLoadImage';
 import { Song } from '@/lib/types';
 import Image from 'next/image';
 import React from 'react';
+import { twMerge } from 'tailwind-merge';
 
 interface MeidaItemProps {
   // You can define any props needed here
   onClick?:(id:string) => void;
   data:Song;
+  className?:string;
 }
 
 const LibraryItem: React.FC<MeidaItemProps> = ({
   onClick,
-  data
+  data,
+  className
 }) => {
 
   const imageUrl = useLoadImage(data)
@@ -26,19 +29,15 @@ const LibraryItem: React.FC<MeidaItemProps> = ({
   return (
     <div 
       onClick={handleClick}
-      className='
-        flex 
+      className={twMerge(`flex 
         gap-3
         p-2 w-full
         bg-neutral-800
         rounded-xl
         cursor-pointer
         justify-start
-        hover:scale-105
-        hover:bg-neutral-700
-        transition
-        origin-left
-    '>
+    `,className)}
+      >
       <div className='
         relative
         rounded-md

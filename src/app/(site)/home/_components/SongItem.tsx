@@ -45,13 +45,18 @@ const SongItem: React.FC<SongItemProps> = ({
         rounded-md
         overflow-hidden
       '>
-        <Image
-          src={imagePath || '/images/liked.png'}
-          fill
-          alt={song.title}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // 响应式布局下的图片大小
-          className='object-cover'
-        ></Image>
+        <Link
+          href={`/home/newest/${song.id}`}
+        >
+          <Image
+            src={imagePath || '/images/liked.png'}
+            fill
+            alt={song.title}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // 响应式布局下的图片大小
+            className='object-cover'
+          />
+        </Link>
+        
         <div className='absolute bottom-2 right-2'>
           <PlayButton onClick={() => onClick(song.id)} song={song}/>
         </div>

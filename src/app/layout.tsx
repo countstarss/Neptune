@@ -7,7 +7,7 @@ import UserProvider from "@/provider/user-provider";
 import ModalProvider from "@/provider/ModalProvider";
 import ToasterProvider from "@/provider/toaster-provider";
 import { getSongsByUserId } from "@/actions/getSongsByUserId";
-import Player from "@/components/Player";
+import Player from "@/components/player/Player";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

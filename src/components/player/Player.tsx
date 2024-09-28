@@ -7,6 +7,7 @@ import useLoadSongUrl from '@/hooks/useLoadSongUrl'
 import { usePlayer } from '@/hooks/usePlayer'
 import { Song } from '@/lib/types'
 import React from 'react'
+import PlayerContent from './PlayerContent'
 
 // interface Player {
 //   song:Song
@@ -26,9 +27,14 @@ const Player = ( ) => {
 
   return (
     <div className='
-      fixed bottom-2 md:left-[280px] left-2 right-2 h-28 bg-slate-500 rounded-lg
+      fixed bottom-2 md:left-[280px] left-2 right-2 h-24 bg-black 
     '>
-      Player{player.activeId}
+      {/* Player{player.activeId} */}
+      <PlayerContent 
+        key={songUrl}
+        song={song}
+        songUrl={songUrl}
+      />
     </div>
   )
 }
