@@ -8,8 +8,8 @@ import Link from 'next/link';
 
 interface SongItemProps {
   // You can define any props needed here
-  song:Song;
-  onClick:(id:string) => void;
+  song: Song;
+  onClick: (id: string) => void;
 }
 
 const SongItem: React.FC<SongItemProps> = ({
@@ -21,7 +21,6 @@ const SongItem: React.FC<SongItemProps> = ({
 
   return (
     <div
-      onClick={() => onClick}
       className='
         relative
         flex
@@ -50,10 +49,11 @@ const SongItem: React.FC<SongItemProps> = ({
           src={imagePath || '/images/liked.png'}
           fill
           alt={song.title}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // 响应式布局下的图片大小
           className='object-cover'
         ></Image>
         <div className='absolute bottom-2 right-2'>
-          <PlayButton />
+          <PlayButton onClick={() => onClick(song.id)} song={song}/>
         </div>
       </div>
       <div className='
@@ -74,7 +74,7 @@ const SongItem: React.FC<SongItemProps> = ({
           By {song.author}
         </Link>
       </div>
-      
+
     </div>
   );
 };

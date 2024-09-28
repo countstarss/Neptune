@@ -28,7 +28,7 @@ export const Layout: React.FC<LayoutProps> = async ({
       overflow-hidden
       overflow-y-auto
     '>
-      <div className='mt-2 mb-4 px-6' >
+      <div className='mt-14 mb-32 px-3' >
         {children}
       </div>
     </div>

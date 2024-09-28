@@ -15,20 +15,20 @@ import React from 'react'
 const Player = ( ) => {
 
   const player = usePlayer()
-  const { song } = useGetSongById(player.activeId!)
 
+  const { song } = useGetSongById(player.activeId!)
   const songUrl = useLoadSongUrl(song!)
 
-  // if(!song || !songUrl || !player.activeId) {
-  //   return null
-  // }
+  if(!song || !songUrl || !player.activeId) {
+    return null
+  }
 
 
   return (
     <div className='
       fixed bottom-2 md:left-[280px] left-2 right-2 h-28 bg-slate-500 rounded-lg
     '>
-      Player
+      Player{player.activeId}
     </div>
   )
 }

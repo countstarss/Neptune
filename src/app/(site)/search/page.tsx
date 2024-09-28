@@ -27,10 +27,11 @@ const SearchPage: React.FC<SearchPageProps> = ({
         h-full
         w-full
         overflow-hidden
-        overflow-y-auto'
+        overflow-y-auto
+        mt-4'
     >
 
-      <div className='h-fit p-6 max-w-full'>
+      <div className='h-fit p-6 py-8 max-w-full'>
         <SearchInput />
       </div>
     </div>

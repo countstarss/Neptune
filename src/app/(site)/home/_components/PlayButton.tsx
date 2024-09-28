@@ -1,16 +1,22 @@
+import { Song } from '@/lib/types';
 import React from 'react';
 import { BiPlay } from 'react-icons/bi';
 import { FaPlay } from 'react-icons/fa6';
 
 interface PlayButtonProps {
   // You can define any props needed here
+  onClick:(id:string) => void;
+  song:Song
 }
 
 const PlayButton: React.FC<PlayButtonProps> = ({
-  
+  onClick,
+  song
 }) => {
   return (
-    <div className='
+    <div 
+      onClick={() => onClick(song.id)}
+      className='
         transition 
         rounded-full
         flex

@@ -45,6 +45,7 @@ const LikedContent: React.FC<LikedContentProps> = ({
       {
         songs.map((song) => (
           <div 
+            key={song.id}
             onClick={()=>{}}
             className='
               flex 
@@ -72,6 +73,7 @@ const LikedContent: React.FC<LikedContentProps> = ({
                     fill
                     src={useImageUrl(song) || '/images/like.png'}
                     alt='Midia image'
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // 响应式布局下的图片大小
                     // className='object-cover'
                   />
                 </div>

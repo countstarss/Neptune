@@ -39,6 +39,7 @@ const DetailTempalte: React.FC<DetailTempalteProps> = async ({
             src="https://images.cubox.pro/1727094042834/208618/image.png"
             alt='Liked Song'
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // 响应式布局下的图片大小
             className='object-cover'
           />
         </div>

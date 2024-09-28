@@ -20,8 +20,10 @@ const Template: React.FC<TemplateProps> = ({
       overflow-hidden
       overflow-y-auto
     '>
-      <Header />
-      {children}
+      <Header className='fixed top-2 right-2 left-2 md:left-[280px] rounded-xl'/>
+        <div className='mt-14 px-3'>
+          {children}
+        </div>
     </div>
   );
 };

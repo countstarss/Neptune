@@ -44,7 +44,13 @@ const ListItem: React.FC<Props> = ({
         {/* 
         TODO: 改成加载storage中的图片
         */}
-        <Image src="https://images.cubox.pro/1727094042834/208618/image.png" fill className='object-cover' alt="image"/>
+        <Image 
+          src="https://images.cubox.pro/1727094042834/208618/image.png" 
+          fill 
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // 响应式布局下的图片大小
+          className='object-cover' 
+          alt="image"
+        />
       </div>
       <p className='font-medium truncate py-5 text-white'>{name}</p>
 
