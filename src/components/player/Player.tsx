@@ -31,6 +31,7 @@ const Player = ( ) => {
     '>
       {/* Player{player.activeId} */}
       <PlayerContent 
+        // NOTE: 在使用use-sound的时候SongUrl没办法动态变化，所以传入一个key，让useSound获取 key
         key={songUrl}
         song={song}
         songUrl={songUrl}

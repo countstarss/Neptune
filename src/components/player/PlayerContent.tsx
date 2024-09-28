@@ -1,12 +1,15 @@
 'use client'
 import { Song } from '@/lib/types'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BsPauseFill, BsPlayFill, BsVolumeDownFill, BsVolumeOff, } from 'react-icons/bs'
 import SearchItem from '@/app/(site)/search/_components/SearchItem'
 import { AiFillStepBackward, AiFillStepForward } from 'react-icons/ai'
 import ControlButton from './ControlButton'
 import Slider from './Slider'
 import { usePlayer } from '@/hooks/usePlayer'
+import { useSound } from 'use-sound'
+import SongInfo from './SongInfo'
+import MiniSongInfo from './MiniSongInfo'
 
 interface PlayerContentProps {
   // You can define any props needed here
@@ -22,9 +25,9 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
 
   const player = usePlayer()
   const [volume,setVolume] = useState(1)
-  const [isPlaying,SetIsPlaying] = useState(false)
+  const [isPlaying,setIsPlaying] = useState(false)
 
-  const Icon = true ? BsPauseFill : BsPlayFill
+  const Icon = isPlaying ? BsPauseFill : BsPlayFill
   const VolumeIcon = volume === 0 ? BsVolumeOff : BsVolumeDownFill
 
 
@@ -60,6 +63,47 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
     player.setId(prevSong)
   }
 
+  // MARK: useSound
+  const [play, { pause,sound }] = useSound(
+    songUrl,
+    {
+      volume: volume,
+      onplay: () => setIsPlaying(true),
+      onend:() => {
+        setIsPlaying(false)
+        onPlayNext()
+      },
+      onpause:() => setIsPlaying(false),
+      format: ['mp3']
+    }
+  )
+
+
+  useEffect(() => {
+    sound?.play()
+
+    return () => {
+      sound?.unload()
+    }
+  },[])
+
+  // MARK: handlePlay
+  const handlePlay = () => {
+    if(!isPlaying) {
+      play()
+    } else {
+      pause()
+    }
+  }
+
+  const toggleMute = () => {
+    if(volume === 0) {
+      setVolume(1)
+    } else {
+      setVolume(0)
+    }
+  }
+
 
 
   return (
@@ -69,12 +113,20 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
       {/* 
       //MARK: 底部左侧显示
       */}
-      <div className='w-[250px] flex'>
-        <SearchItem 
+      <div className='md:w-[250px] md:flex w-[80px]  '>
+        <SongInfo 
           // TODO: 点击打开歌词之类的东西
           onClick={() => {}}
           data={song}
+          className='md:flex hidden'
         />
+        <MiniSongInfo
+          // TODO: 点击打开歌词之类的东西
+          onClick={() => {}}
+          data={song}
+          className='flex md:hidden'
+        />
+
       </div>
 
       <div 
@@ -117,7 +169,11 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
               />
             </ControlButton>
             <ControlButton className='rounded-full bg-white/80 justify-center'>
-              <Icon size={30} className='text-black opacity-70 hover:opacity-100 transition'/>
+              <Icon 
+                onClick={handlePlay}
+                size={30} 
+                className='text-black opacity-70 hover:opacity-100 transition'
+              />
             </ControlButton>
 
             <ControlButton>
@@ -130,8 +186,16 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
           </div>
 
           <ControlButton className='flex w-auto items-center mx-auto'>
-            <BsVolumeDownFill size={30} className='text-slate-100 opacity-50 hover:opacity-100 transition'/>
-            <Slider value={0.6} className='w-[50px]'/>
+            <BsVolumeDownFill 
+              onClick={toggleMute}
+              size={30} 
+              className='text-slate-100 opacity-50 hover:opacity-100 transition'
+            />
+            <Slider 
+              value={volume} 
+              className='w-[50px]'
+              onChange={(value) => setVolume(value)}
+            />
           </ControlButton>
         </div>
       </div>
