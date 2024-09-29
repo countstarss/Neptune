@@ -8,6 +8,9 @@ import LoadState from '@/components/global/LoadState';
 import SearchItem from './SearchItem';
 import SelectCategory from './SelectCategory';
 import useOnPlay from '@/hooks/useOnPlay';
+import LikedButton from './LikedButton';
+import useLikedSongs from '@/hooks/useLikedSongs';
+import SearchImage from './SearchImage';
 
 const SearchInput: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');  // 输入框中的值
@@ -42,8 +45,8 @@ const SearchInput: React.FC = () => {
   }, [debouncedSearchTerm]);
 
 
+  const { likedSongs, handleLikeToggle } = useLikedSongs(searchResult!);
   const onPlay = useOnPlay(searchResult!)
-
 
   return (
     <div className='w-full'>
@@ -71,12 +74,44 @@ const SearchInput: React.FC = () => {
           mt-4
         '>
           {searchResult.map((song) => (
-            // <li key={song.id}>{song.title}</li>
+            // MARK: SearchItem
             <SearchItem
-            key={song.id}
-            data={song}
-            onClick={(id:string) => onPlay(song.id)}  
-            />
+              key={song.id}
+              data={song}
+            >
+              <div
+                onClick={()=> onPlay(song.id)}
+                className='
+                  select-none
+                  flex 
+                  gap-2
+                  p-2 w-full
+                  bg-neutral-800
+                  rounded-xl
+                  cursor-pointer
+                  justify-between
+                  border
+                  border-neutral-500
+                  border-opacity-0
+                  hover:border-opacity-80
+                  transition
+              '>
+                <div className='flex flex-row gap-x-2'>
+                  <SearchImage song={song}/>
+                  <div className='flex flex-col items-start justify-start text-white w-[100px]'>
+                    <p className='font-semibold truncate'>{song.title}</p>
+                    <p className='font-light truncate'>{song.author}</p>
+                  </div>
+                </div>
+                <LikedButton
+                  song={song}
+                  isLiked={likedSongs.includes(song.id)}
+                  onLikeToggle={handleLikeToggle}
+                />
+              </div>
+
+
+            </SearchItem>
           ))}
         </div>
 

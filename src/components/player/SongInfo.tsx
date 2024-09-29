@@ -4,6 +4,7 @@ import Image from 'next/image';
 import React from 'react';
 import LikedButton from '@/app/(site)/search/_components/LikedButton';
 import { twMerge } from 'tailwind-merge';
+import useLikedSongs from '@/hooks/useLikedSongs';
 
 interface SongInfoProps {
   // You can define any props needed here
@@ -25,6 +26,8 @@ const SongInfo: React.FC<SongInfoProps> = ({
       return onClick(data.id)
     }
   }
+
+  const { likedSongs, handleLikeToggle } = useLikedSongs(data);
 
   // TODO: 添加一个播放动效 ： 点击之后从惦记的地方出现一个Mac的神奇效果，覆盖到主页面，进行播放
 
@@ -66,7 +69,11 @@ const SongInfo: React.FC<SongInfoProps> = ({
           <p className='font-light w-full truncate'>{data.author}</p>
         </div>
       </div>
-      <LikedButton song={data} />
+      <LikedButton 
+        song={data} 
+        isLiked={likedSongs.includes(data.id)}
+        onLikeToggle={handleLikeToggle}
+      />
     </div>
   );
 };

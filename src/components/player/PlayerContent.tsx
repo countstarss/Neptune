@@ -205,12 +205,12 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
       */}
 
       <div className='w-[250px] xl:flex hidden'>
-        <SearchItem 
+        {/* <SearchItem 
           // TODO: 点击打开上拉列表，显示专辑里的/随机的歌单
           // TODO: 这里如果要显示的话就是直接把Album:Song[]传过来
           onClick={() => {}}
           data={song}
-        />
+        /> */}
       </div>
     </div>
   );
