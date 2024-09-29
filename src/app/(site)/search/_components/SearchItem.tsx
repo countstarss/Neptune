@@ -30,6 +30,7 @@ const SearchItem: React.FC<MeidaItemProps> = ({
     <div 
       onClick={handleClick}
       className='
+        select-none
         flex 
         gap-2
         p-2 w-full

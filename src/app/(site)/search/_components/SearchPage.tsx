@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import LoadState from '@/components/global/LoadState';
 import SearchItem from './SearchItem';
 import SelectCategory from './SelectCategory';
+import useOnPlay from '@/hooks/useOnPlay';
 
 const SearchInput: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');  // 输入框中的值
@@ -18,6 +19,7 @@ const SearchInput: React.FC = () => {
   useEffect(() => {
     if (!debouncedSearchTerm) return;  // 如果没有搜索词则不进行请求
 
+    // MARK: fetchSongs
     const fetchSongs = async () => {
       setLoading(true);
       setError(null);
@@ -38,6 +40,10 @@ const SearchInput: React.FC = () => {
 
     fetchSongs();
   }, [debouncedSearchTerm]);
+
+
+  const onPlay = useOnPlay(searchResult!)
+
 
   return (
     <div className='w-full'>
@@ -69,7 +75,7 @@ const SearchInput: React.FC = () => {
             <SearchItem
             key={song.id}
             data={song}
-            onClick={() => {}}  
+            onClick={(id:string) => onPlay(song.id)}  
             />
           ))}
         </div>

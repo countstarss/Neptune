@@ -9,6 +9,9 @@ import AuthModal from '../modal/AuthModal';
 import { useUploadModal } from '@/hooks/useUploadModal';
 import { Song } from '@/lib/types';
 import LibraryItem from './LibraryItem';
+import useOnPlay from '@/hooks/useOnPlay';
+import { cn } from '@/lib/utils';
+import { usePlayer } from '@/hooks/usePlayer';
 
 interface Props {
   // You can define any props needed here
@@ -25,6 +28,7 @@ const Library = ({
 
   const { user } = useUser()
 
+  // MARK: onClick
   const onClick = () => {
     if (!user) {
       return authModal.onOpen()
@@ -33,6 +37,9 @@ const Library = ({
 
     return uploadModal.onOpen()
   }
+
+  const player = usePlayer()
+  const onPlay = useOnPlay(songs)
 
   return (
     // MARK: Library
@@ -70,13 +77,12 @@ const Library = ({
         {
           songs.map((item) => (
             <LibraryItem
-              onClick={() => { }}
+              onClick={(id:string) => onPlay(item.id)}
               key={item.id}
               data={item}
-              className='hover:scale-105
-                hover:bg-neutral-700
-                  transition
-                  origin-left'
+              className={cn(`hover:scale-105 hover:bg-neutral-700 transition origin-left select-none`,
+                player.activeId === item.id && "scale-105 bg-neutral-700"
+            )}
             />
           ))
         }

@@ -118,13 +118,13 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
           // TODO: 点击打开歌词之类的东西
           onClick={() => {}}
           data={song}
-          className='lg:flex hidden'
+          className='lg:flex hidden select-none'
         />
         <MiniSongInfo
           // TODO: 点击打开歌词之类的东西
           onClick={() => {}}
           data={song}
-          className='flex lg:hidden'
+          className='flex lg:hidden select-none'
         />
 
       </div>

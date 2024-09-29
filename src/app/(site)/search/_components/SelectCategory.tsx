@@ -12,7 +12,7 @@ const SelectCategory: React.FC = ({
       className='
         w-1/2 h-full 
         rounded-full 
-        bg-neutral-400 
+        bg-transparent
         items-center 
         justify-center 
         p-4 mx-4
