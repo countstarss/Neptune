@@ -85,7 +85,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
     return () => {
       sound?.unload()
     }
-  },[])
+  },[sound])
 
   // MARK: handlePlay
   const handlePlay = () => {
@@ -186,7 +186,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
           </div>
 
           <ControlButton className='flex w-auto items-center mx-auto'>
-            <BsVolumeDownFill 
+            <VolumeIcon 
               onClick={toggleMute}
               size={30} 
               className='text-slate-100 opacity-50 hover:opacity-100 transition'

@@ -8,7 +8,6 @@ import { useUser } from '@/hooks/useUser';
 import AuthModal from '../modal/AuthModal';
 import { useUploadModal } from '@/hooks/useUploadModal';
 import { Song } from '@/lib/types';
-import MeidaItem from './LibraryItem';
 import LibraryItem from './LibraryItem';
 
 interface Props {

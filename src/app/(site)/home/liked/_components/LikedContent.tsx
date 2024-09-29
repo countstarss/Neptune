@@ -1,11 +1,10 @@
 'use client'
 import LikedButton from '@/app/(site)/search/_components/LikedButton';
-import useLoadImage from '@/hooks/useLoadImage';
 import { useUser } from '@/hooks/useUser';
 import { Song } from '@/lib/types';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
+import LikedContentImage from './LikedContentImage';
 
 interface LikedContentProps {
   // You can define any props needed here
@@ -18,16 +17,14 @@ const LikedContent: React.FC<LikedContentProps> = ({
 
   const router = useRouter()
   const { isLoading,user }  = useUser()
-  const useImageUrl = (song:Song) => {
-    return useLoadImage(song)
-  }
+
 
   // INFO: 如果没有user，就返回首页
   useEffect(() => {
     if(!isLoading && !user) {
       router.replace('/')
     }
-  },[])
+  },[user,isLoading,router])
 
   if(songs.length === 0) {
     return (
@@ -37,9 +34,8 @@ const LikedContent: React.FC<LikedContentProps> = ({
     )
   }
 
-
-
-
+  
+  // MARK: LikedContent
   return (
     <div className='flex flex-col gap-y-2 mt-10'>
       {
@@ -62,21 +58,7 @@ const LikedContent: React.FC<LikedContentProps> = ({
               transition
             '>
               <div className='flex flex-row gap-x-3'>
-                <div className='
-                  relative
-                  rounded-md
-                  min-h-[48px]
-                  min-w-[48px]
-                  overflow-hidden
-                '>
-                  <Image
-                    fill
-                    src={useImageUrl(song) || '/images/like.png'}
-                    alt='Midia image'
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // 响应式布局下的图片大小
-                    className='object-cover'
-                  />
-                </div>
+                <LikedContentImage song={song}/>
                 <div className='flex flex-col items-start justify-start text-white'>
                   <p className='font-semibold truncate'>{song.title}</p>
                   <p className='font-light truncate'>{song.author}</p>

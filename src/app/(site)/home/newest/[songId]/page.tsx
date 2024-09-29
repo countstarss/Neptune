@@ -1,10 +1,7 @@
 import React from 'react';
 
-interface NewestSongDetailProps {
-  // You can define any props needed here
-}
 
-const NewestSongDetail: React.FC<NewestSongDetailProps> = ({
+const NewestSongDetail: React.FC = ({
   
 }) => {
   return (

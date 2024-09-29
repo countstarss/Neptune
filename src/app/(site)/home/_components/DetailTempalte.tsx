@@ -1,4 +1,4 @@
-import { getLikedSongs } from '@/actions/getLikedSongs';
+
 import Image from 'next/image';
 import React from 'react';
 
@@ -13,7 +13,7 @@ const DetailTempalte: React.FC<DetailTempalteProps> = async ({
   children,title,subtitle
 }) => {
 
-  const songs = await getLikedSongs()
+  // const songs = await getLikedSongs()
 
   return (
     <div className='

@@ -1,8 +1,6 @@
-import AuthModal from '@/components/modal/AuthModal';
 import { useAuthModal } from '@/hooks/useAuthModal';
 import { useUser } from '@/hooks/useUser';
 import { Song } from '@/lib/types';
-import { SupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';

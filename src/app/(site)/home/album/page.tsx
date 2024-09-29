@@ -1,15 +1,10 @@
-import React from 'react';
+import React from 'react'
 
-interface AlbumProps {
-  // You can define any props needed here
-}
 
-const Album: React.FC<AlbumProps> = ({
-  
-}) => {
+const Album = () => {
   return (
     <div>Album</div>
-  );
-};
+  )
+}
 
-export default Album;
+export default Album

@@ -2,11 +2,8 @@
 import React from 'react';
 import { Toaster } from "react-hot-toast"
 
-interface ToasterProviderProps {
-  // You can define any props needed here
-}
 
-const ToasterProvider = ({ }: ToasterProviderProps) => {
+const ToasterProvider = () => {
 
 
   return (

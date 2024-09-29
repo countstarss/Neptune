@@ -1,10 +1,10 @@
 import React from 'react';
 
-interface RadioProps {
-  // You can define any props needed here
-}
+// interface RadioProps {
+//   // You can define any props needed here
+// }
 
-const Radio: React.FC<RadioProps> = ({
+const Radio: React.FC = ({
   
 }) => {
   return (

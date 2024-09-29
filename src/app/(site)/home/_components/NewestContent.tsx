@@ -3,7 +3,6 @@ import { Song } from '@/lib/types';
 import React from 'react';
 import SongItem from './SongItem';
 import useOnPlay from '@/hooks/useOnPlay';
-import Link from 'next/link';
 
 interface NewestContentPageProps {
   // You can define any props needed here

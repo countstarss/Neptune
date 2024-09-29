@@ -1,10 +1,10 @@
 import React from 'react';
 
-interface SelectCategoryProps {
-  // You can define any props needed here
-}
+// interface SelectCategoryProps {
+//   // You can define any props needed here
+// }
 
-const SelectCategory: React.FC<SelectCategoryProps> = ({
+const SelectCategory: React.FC = ({
   
 }) => {
   return (

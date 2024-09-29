@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge';
 interface ColBoxProps {
   // You can define any props needed here
   children?:React.ReactNode;
-  className?:String;
+  className?:string;
 }
 
 const FlexBox: React.FC<ColBoxProps> = ({

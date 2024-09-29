@@ -25,7 +25,7 @@ const Header: React.FC<Props> = ({
   const supabaseClient = useSupabaseClient()
   // const { user } = useUser()
   const { user } = useUser()
-  const { isOpen, onOpen, onClose } = useAuthModal();
+  const {onOpen } = useAuthModal();
 
   
 
@@ -49,6 +49,7 @@ const Header: React.FC<Props> = ({
       bg-gradient-to-b
       from-emerald-800
       p-6
+      z-50
       `,
       className
       )}>

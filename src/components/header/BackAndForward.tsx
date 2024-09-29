@@ -2,11 +2,8 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import { RxCaretLeft, RxCaretRight } from 'react-icons/rx';
 
-interface Props {
-  // You can define any props needed here
-}
 
-const BackAndForWardButton: React.FC<Props> = ({
+const BackAndForWardButton: React.FC = ({
 }) => {
   const router = useRouter()
   return (

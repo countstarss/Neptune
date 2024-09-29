@@ -12,7 +12,7 @@ interface Props {
 }
 
 const ListItem: React.FC<Props> = ({
-  image,name,href
+  name,href
 }) => {
 
   const router = useRouter()

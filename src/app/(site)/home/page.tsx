@@ -1,18 +1,13 @@
 import { getSongs } from '@/actions/getSongs';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import NewestContent from './_components/NewestContent';
 import Link from 'next/link';
 import LikedSongs from './_components/LikedSongs';
 
-interface Props {
-  // You can define any props needed here
-  
-}
 
 // MARK: 首页所有内容
-export const HomePage: React.FC<Props> = async ({
-  
-}) => {
+const Page = async () => {
+
   const songs = await getSongs()
   return (
     < div className='mt-2 mb-7 px-6' >
@@ -39,7 +34,7 @@ export const HomePage: React.FC<Props> = async ({
   );
 };
 
-export default HomePage;
+export default Page;
 
 
 

@@ -23,6 +23,7 @@ export const UserContext = createContext<UserContextType | undefined>(
 
 export interface Props {
   // You can define any props needed here
+  // FIXME: HERE
   [propsName :string] :any;
 }
 // FIXME: 再学习一遍UserContextProvider的写法
@@ -71,7 +72,8 @@ export const UserContextProvider= (props: Props) => {
       setUserDetails(null)
       setSubscription(null)
     }
-  },[user,isLoadingUser])
+
+  },[user,isLoadingUser, isLoadingData, subscription, userDetails])
 
 
   const value = {

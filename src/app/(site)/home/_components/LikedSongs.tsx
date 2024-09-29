@@ -1,11 +1,8 @@
 import ListItem from '@/components/ListItem';
 import React from 'react';
 
-interface LikedSongsProps {
-  // You can define any props needed here
-}
 
-const LikedSongs: React.FC<LikedSongsProps> = ({
+const LikedSongs: React.FC = ({
 
 }) => {
   return (

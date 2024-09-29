@@ -1,10 +1,10 @@
 import React from 'react';
 
-interface SingerProps {
-  // You can define any props needed here
-}
+// interface SingerProps {
+//   // You can define any props needed here
+// }
 
-const Singer: React.FC<SingerProps> = ({
+const Singer: React.FC = ({
   
 }) => {
   return (

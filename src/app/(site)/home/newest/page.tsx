@@ -1,10 +1,10 @@
 import React from 'react';
 
-interface NewestProps {
-  // You can define any props needed here
-}
+// interface NewestProps {
+//   // You can define any props needed here
+// }
 
-const Newest: React.FC<NewestProps> = ({
+const Newest: React.FC = ({
   
 }) => {
   return (

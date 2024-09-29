@@ -1,10 +1,8 @@
 import React from 'react';
 
-interface PupolarProps {
-  // You can define any props needed here
-}
 
-const Pupolar: React.FC<PupolarProps> = ({
+
+const Pupolar: React.FC = ({
   
 }) => {
   return (

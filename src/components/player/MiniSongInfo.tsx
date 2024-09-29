@@ -2,11 +2,9 @@ import useLoadImage from '@/hooks/useLoadImage';
 import { Song } from '@/lib/types';
 import Image from 'next/image';
 import React from 'react';
-import LikedButton from '@/app/(site)/search/_components/LikedButton';
 import { twMerge } from 'tailwind-merge';
 
 interface MiniSongInfoProps {
-  // You can define any props needed here
   onClick?: (id: string) => void;
   data: Song;
   className?: string

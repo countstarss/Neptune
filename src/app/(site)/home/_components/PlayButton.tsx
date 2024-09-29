@@ -1,6 +1,5 @@
 import { Song } from '@/lib/types';
 import React from 'react';
-import { BiPlay } from 'react-icons/bi';
 import { FaPlay } from 'react-icons/fa6';
 
 interface PlayButtonProps {

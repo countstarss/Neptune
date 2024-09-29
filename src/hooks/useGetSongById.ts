@@ -1,4 +1,3 @@
-import { SupabaseClient } from '@supabase/auth-helpers-nextjs';
 import { Song } from "@/lib/types"
 import { useEffect, useMemo, useState } from "react"
 import { useSessionContext } from '@supabase/auth-helpers-react';

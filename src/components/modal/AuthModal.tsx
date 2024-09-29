@@ -6,12 +6,7 @@ import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
 import { useRouter } from 'next/navigation';
 import { useAuthModal } from '@/hooks/useAuthModal';
-import { supabase } from '@/utils/supabase/server';
 
-
-interface AuthModalProps {
-  // You can define any props needed here
-}
 
 const AuthModal = () => {
   const supabaseClient = useSupabaseClient()

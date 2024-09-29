@@ -4,8 +4,6 @@ import useDebounce from '@/hooks/useDebounce';
 import React, { useState, useEffect } from 'react';
 import { Song } from '@/lib/types';
 import { Input } from '@/components/ui/input';
-import SongItem from '../../home/_components/SongItem';
-import Loading from '@/components/global/LoadState';
 import LoadState from '@/components/global/LoadState';
 import SearchItem from './SearchItem';
 import SelectCategory from './SelectCategory';

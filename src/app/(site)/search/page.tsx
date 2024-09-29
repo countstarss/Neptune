@@ -1,18 +1,8 @@
-import Header from '@/components/header/Header';
-import { Input } from '@/components/ui/input';
-import { useRouter } from 'next/navigation';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import SearchInput from './_components/SearchPage';
 
-interface SearchPageProps {
-  // You can define any props needed here
-  searchParams: {
-    title: string
-  }
-}
 
-const SearchPage: React.FC<SearchPageProps> = ({
-  searchParams
+const SearchPage: React.FC = ({
 }) => {
 
 

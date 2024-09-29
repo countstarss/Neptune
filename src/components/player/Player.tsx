@@ -1,11 +1,8 @@
 'use client'
 
-
 import useGetSongById from '@/hooks/useGetSongById'
-import useLoadImage from '@/hooks/useLoadImage'
 import useLoadSongUrl from '@/hooks/useLoadSongUrl'
 import { usePlayer } from '@/hooks/usePlayer'
-import { Song } from '@/lib/types'
 import React from 'react'
 import PlayerContent from './PlayerContent'
 

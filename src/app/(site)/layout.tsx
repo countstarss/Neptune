@@ -1,5 +1,4 @@
 import Header from '@/components/header/Header';
-import ListItem from '@/components/ListItem';
 import React from 'react';
 
 interface TemplateProps {
@@ -21,7 +20,9 @@ const Template: React.FC<TemplateProps> = ({
       overflow-y-auto
     '>
       <Header className='fixed top-2 right-2 left-2 md:left-[280px] rounded-xl'/>
-        <div className='mt-14 px-3'>
+        <div className='fixed top-2 right-2 left-2 md:left-[280px] rounded-xl 
+                      bg-white/30 backdrop-blur-lg backdrop-saturate-150 z-40'/>
+        <div className='mt-14 px-3 z-30'>
           {children}
         </div>
     </div>

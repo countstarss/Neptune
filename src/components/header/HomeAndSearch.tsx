@@ -2,11 +2,8 @@ import React from 'react';
 import { BiSearch } from 'react-icons/bi';
 import { HiHome } from 'react-icons/hi';
 
-interface Props {
-  // You can define any props needed here
-}
 
-const HomeAndSearchButton: React.FC<Props> = ({
+const HomeAndSearchButton: React.FC = ({
   
 }) => {
   return (

@@ -72,3 +72,5 @@ export default SupabaseProvider;
 ## npm i use-sound
 
 ## npm i react-spinners
+
+## npm i sharp （自动优化next/image）

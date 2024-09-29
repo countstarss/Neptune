@@ -24,12 +24,14 @@ const UploadModal = () => {
     supabaseKey: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY})
   const router = useRouter()
 
+  // NOTE:  Use "ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free. 
   const { register, handleSubmit, reset } = useForm<FieldValues>({
-    //@ts-ignore
-    author: '',
-    title: '',
-    song: null,
-    image: null
+    defaultValues: {
+      author: '',
+      title: '',
+      song: null,
+      image: null
+    }
   })
 
   const onChange = (open: boolean) => {
@@ -37,10 +39,6 @@ const UploadModal = () => {
       reset()
       uploadModal.onClose()
     }
-  }
-  
-  const handleCloseModal = () => {
-      // uploadModal.onClose()
   }
 
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
@@ -82,8 +80,6 @@ const UploadModal = () => {
       // }
 
 
-      const fileName = `${values.title}`;
-      const encodedFileName = encodeURIComponent(fileName);
       // MARK: Upload song
       const { data: songData, error: songError } = await supabaseClient
         .storage
@@ -134,6 +130,7 @@ const UploadModal = () => {
       uploadModal.onClose()
     } catch (error) {
       toast.error('Something went wrong')
+      console.log(error)
     } finally {
       setIsLoading(false)
     }
@@ -192,7 +189,6 @@ const UploadModal = () => {
           disabled={isLoading}
           type="submit"
           title='Create'
-          onClick={handleCloseModal}
         >
           Create
         </Button>
