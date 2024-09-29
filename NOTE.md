@@ -70,3 +70,5 @@ export default SupabaseProvider;
 ## npm i @radix-ui/react-slider
 
 ## npm i use-sound
+
+## npm i react-spinners

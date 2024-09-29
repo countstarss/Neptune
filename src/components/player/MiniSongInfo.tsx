@@ -58,7 +58,7 @@ const MiniSongInfo: React.FC<MiniSongInfoProps> = ({
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // 响应式布局下的图片大小
             src={imageUrl || '/images/like.png'}
             alt='Midia image'
-          // className='object-cover'
+          className='object-cover'
           />
         </div>
       </div>

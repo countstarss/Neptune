@@ -40,7 +40,7 @@ const UploadModal = () => {
   }
   
   const handleCloseModal = () => {
-    
+      // uploadModal.onClose()
   }
 
   const onSubmit: SubmitHandler<FieldValues> = async (values) => {
@@ -82,11 +82,13 @@ const UploadModal = () => {
       // }
 
 
+      const fileName = `${values.title}`;
+      const encodedFileName = encodeURIComponent(fileName);
       // MARK: Upload song
       const { data: songData, error: songError } = await supabaseClient
         .storage
         .from('spotify-songs')
-        .upload(`song-${values.title}-${uniqueID}`, songFile, {
+        .upload(`song-${uniqueID}`, songFile, {
           contentType:'audio/mpeg'
         })
 
@@ -101,7 +103,7 @@ const UploadModal = () => {
       // MARK: Upload image
       const { data: imageData, error: imageError } = await supabaseClient.storage
         .from('spotify-images')
-        .upload(`image-${values.title}-${uniqueID}`, imageFile, {
+        .upload(`image-${uniqueID}`, imageFile, {
           contentType:"image"
         })
 
@@ -171,7 +173,7 @@ const UploadModal = () => {
             id="song"
             type="file"
             disabled={isLoading}
-            accept=".mp3"
+            accept=".mp3, .wav, .ogg, .m4a, .aac, .flac"
             {...register('song', { required: true })}
           />
         </div>

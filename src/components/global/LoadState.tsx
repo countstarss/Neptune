@@ -1,5 +1,5 @@
 import React from 'react';
-
+import  { BounceLoader } from 'react-spinners'
 interface LoadStateProps {
   // You can define any props needed here
   state?:string
@@ -17,7 +17,13 @@ const LoadState: React.FC<LoadStateProps> = ({
       items-center
       justify-center
     '>
-      <h1 className=' text-xl text-white'>{state || "loading"}</h1>
+      {
+        state === "Loading..." ? (
+          <BounceLoader color='#22c55e' size={40}/>
+        ) : (
+          <h1 className=' text-xl text-white'>{state || "loading"}</h1>
+        )
+      }
     </div>
   );
 };

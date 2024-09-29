@@ -65,7 +65,7 @@ const Library = ({
         </div>
       </FlexBox>
       {/* 
-      // MARK: MeidaItem 
+      // MARK: LibraryItem 
       */}
       <div className='flex flex-col flex-rowgap-y-2 mt-4 px-3 text-white gap-1'>
         {

@@ -58,12 +58,12 @@ const SongInfo: React.FC<SongInfoProps> = ({
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // 响应式布局下的图片大小
             src={imageUrl || '/images/like.png'}
             alt='Midia image'
-            // className='object-cover'
+            className='object-cover'
           />
         </div>
-        <div className='flex flex-col items-start justify-start text-white w-[120px]'>
-          <p className='font-semibold truncate'>{data.title}</p>
-          <p className='font-light truncate'>{data.author}</p>
+        <div className='flex flex-col items-start justify-start text-white w-[100px]'>
+          <p className='font-semibold w-full truncate'>{data.title}</p>
+          <p className='font-light w-full truncate'>{data.author}</p>
         </div>
       </div>
       <LikedButton song={data} />

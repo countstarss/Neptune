@@ -50,12 +50,12 @@ const LibraryItem: React.FC<MeidaItemProps> = ({
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"  // 响应式布局下的图片大小
           src={imageUrl || '/images/liked.png'}
           alt='Midia image'
-          // className='object-cover'
+          className='object-cover'
         />
       </div>
-      <div className='flex flex-col justify-start items-start'>
-        <h1 className='font-semibold'>{data.title}</h1>
-        <h1 className='font-light'>{data.author}</h1>
+      <div className='flex flex-col justify-start items-start w-[150px]'>
+        <h1 className='font-semibold w-full truncate'>{data.title}</h1>
+        <h1 className='font-light w-full truncate'>{data.author}</h1>
       </div>
     </div>
   );

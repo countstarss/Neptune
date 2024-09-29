@@ -74,7 +74,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
         onPlayNext()
       },
       onpause:() => setIsPlaying(false),
-      format: ['mp3']
+      format: ['mp3', 'wav', 'ogg', 'm4a', 'aac', 'flac']
     }
   )
 
@@ -113,18 +113,18 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
       {/* 
       //MARK: 底部左侧显示
       */}
-      <div className='md:w-[250px] md:flex w-[80px]  '>
+      <div className='lg:w-[250px] lg:flex w-[80px]  '>
         <SongInfo 
           // TODO: 点击打开歌词之类的东西
           onClick={() => {}}
           data={song}
-          className='md:flex hidden'
+          className='lg:flex hidden'
         />
         <MiniSongInfo
           // TODO: 点击打开歌词之类的东西
           onClick={() => {}}
           data={song}
-          className='flex md:hidden'
+          className='flex lg:hidden'
         />
 
       </div>
@@ -168,7 +168,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
                 className='text-slate-100 opacity-50 hover:opacity-100 transition'
               />
             </ControlButton>
-            <ControlButton className='rounded-full bg-white/80 justify-center'>
+            <ControlButton className='rounded-full bg-white/80 justify-center items-center'>
               <Icon 
                 onClick={handlePlay}
                 size={30} 

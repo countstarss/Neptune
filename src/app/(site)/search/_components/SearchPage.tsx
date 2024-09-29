@@ -56,7 +56,7 @@ const SearchInput: React.FC = () => {
         />
         <SelectCategory />
       </div>
-      {loading && <LoadState state='loading...' />}  {/* 显示加载状态 */}
+      {loading && <LoadState state='Loading...' />}  {/* 显示加载状态 */}
       {error && <LoadState state='Error' />}  {/* 显示错误信息 */}
       {searchResult && searchResult.length > 0 ? (
         <div className='
