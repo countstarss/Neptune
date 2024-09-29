@@ -1,24 +1,29 @@
+import { getLikedSongs } from '@/actions/getLikedSongs';
 import { useAuthModal } from '@/hooks/useAuthModal';
 import { useUser } from '@/hooks/useUser';
 import { Song } from '@/lib/types';
 import { useSupabaseClient } from '@supabase/auth-helpers-react';
 import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import LikedSongs from '../../home/_components/LikedSongs';
 
 interface LikedButtonProps {
   // You can define any props needed here
   song:Song;
-
+  isLiked:boolean;
+  onLikeToggle: (songId: string, isLiked: boolean) => void;
 }
 
 const LikedButton: React.FC<LikedButtonProps> = ({
-  song
+  song,
+  isLiked,
+  onLikeToggle
 }) => {
   const router = useRouter()
 
-  const [isLiked,setIsLiked] = useState(true)
+  const [loading, setLoading] = useState(false);
   const Icon = isLiked ? AiFillHeart : AiOutlineHeart
 
   // MARK: Auth
@@ -26,42 +31,52 @@ const LikedButton: React.FC<LikedButtonProps> = ({
   const authModal = useAuthModal()
   const supabaseClient = useSupabaseClient()
 
-  // TODO: Effect 获取库里是否有那首歌，确定是否 Liked
+
 
   // MARK: handleLike
-  const handleLike = async () => {
+  const handleLike = async (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    event.stopPropagation()
     if(!user) {
       return authModal.onOpen
     }
 
-    if(isLiked) {
-      const { error } = await supabaseClient
-        .from('liked_songs')
-        .delete()
-        .eq('user_id',user.id)
-        .eq('song_id',song.id)
+    setLoading(true)
 
-      if(error) {
-        toast.error(error.message)
+    try {
+      if(isLiked) {
+        // INFO: 取消喜欢
+        const { error } = await supabaseClient
+          .from('liked_songs')
+          .delete()
+          .eq('user_id',user.id)
+          .eq('song_id',song.id)
+  
+        if(error) {
+          toast.error(error.message)
+        } else {
+          onLikeToggle(song.id,false)
+          toast('UnLiked')
+        }
       } else {
-        setIsLiked(false)
-        toast('UnLiked')
-      }
-    } else {
-      const { error } = await supabaseClient
-        .from('liked_songs')
-        .insert({
-          song_id:song.id,
-          user_id:user.id
-        })
-
-      if(error) {
-        toast.error(error.message)
-      } else {
-        setIsLiked(true)
-        toast.success('Liked')
-      }
+        //INFO: 添加喜欢
+        const { error } = await supabaseClient
+          .from('liked_songs')
+          .insert({
+            song_id:song.id,
+            user_id:user.id
+          })
+  
+        if(error) {
+          toast.error(error.message)
+        } else {
+          onLikeToggle(song.id,true)
+          toast.success('Liked')
+        }
+      } 
+    }catch (error) {
+      toast.error('toggle error')
     }
+
     router.refresh()
   }
 

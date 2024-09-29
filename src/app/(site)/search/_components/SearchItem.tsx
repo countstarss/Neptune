@@ -1,8 +1,10 @@
+'use client'
 import useLoadImage from '@/hooks/useLoadImage';
 import { Song } from '@/lib/types';
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import LikedButton from './LikedButton';
+import { getLikedSongs } from '@/actions/getLikedSongs';
 
 interface MeidaItemProps {
   // You can define any props needed here
@@ -15,7 +17,35 @@ const SearchItem: React.FC<MeidaItemProps> = ({
   data
 }) => {
 
+  const [likedSongs, setLikedSongs] = useState<string[]>([]); // 存储已喜欢歌曲的 ID 列表
+
   
+  useEffect(() => {
+    const fetchLikedSongs = async () => {
+      try {
+        const liked = await getLikedSongs(); // 从数据库获取已喜欢的歌曲
+        setLikedSongs(liked.map(song => song.id));
+      } catch (error) {
+        console.error('Error fetching liked songs:', error);
+      }
+    };
+
+    fetchLikedSongs();
+  }, []);
+
+  // 更新 likedSongs 的回调函数
+  const handleLikeToggle = (songId: string, isLiked: boolean) => {
+    setLikedSongs(prev => {
+      if (isLiked) {
+        return prev.filter(id => id !== songId); // 取消喜欢
+      } else {
+        return [...prev, songId]; // 添加喜欢
+      }
+    });
+  };
+
+
+  // MARK: useLoadImage
   const imageUrl = useLoadImage(data)
   const handleClick = () => {
     if(onClick) {
@@ -65,7 +95,11 @@ const SearchItem: React.FC<MeidaItemProps> = ({
           <p className='font-light truncate'>{data.author}</p>
         </div>
       </div>
-      <LikedButton song={data} />
+      <LikedButton 
+        song={data} 
+        isLiked={likedSongs.includes(data.id)}
+        onLikeToggle={handleLikeToggle}
+      />
     </div>
   );
 };
