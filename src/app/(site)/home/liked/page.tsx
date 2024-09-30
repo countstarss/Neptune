@@ -3,12 +3,9 @@ import { getLikedSongs } from '@/actions/getLikedSongs';
 import React from 'react';
 import DetailTempalte from '../_components/DetailTempalte';
 import LikedContent from './_components/LikedContent';
-import useOnPlay from '@/hooks/useOnPlay';
 
 
-const Liked: React.FC = async ({
-  
-}) => {
+const Liked = async () => {
 
   const songs = await getLikedSongs()
   // const onPlay = useOnPlay(songs)

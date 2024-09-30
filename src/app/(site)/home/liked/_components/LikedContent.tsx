@@ -15,12 +15,13 @@ interface LikedContentProps {
   songs: Song[];
 }
 
-const LikedContent: React.FC<LikedContentProps> = ({
+const LikedContent= ({
   songs
-}) => {
+}: LikedContentProps) => {
 
   const router = useRouter()
   const { isLoading, user } = useUser()
+  const { likedSongs, handleLikeToggle } = useLikedSongs(songs);
 
   // MARK: Auth
   useEffect(() => {
@@ -28,6 +29,8 @@ const LikedContent: React.FC<LikedContentProps> = ({
       router.replace('/')
     }
   }, [user, isLoading, router])
+
+  const onPlay = useOnPlay(songs)
 
   //MARK: Catch Error
   if (songs.length === 0) {
@@ -38,10 +41,6 @@ const LikedContent: React.FC<LikedContentProps> = ({
     )
   }
 
-  const onPlay = useOnPlay(songs)
-
-  const { likedSongs, handleLikeToggle } = useLikedSongs(songs);
-
   // MARK: LikedContent
   return (
     <>
@@ -50,6 +49,7 @@ const LikedContent: React.FC<LikedContentProps> = ({
         {
           songs.map((song) =>
             <LikedItem
+              key={song.id}
               song={song}
               onClick={() => onPlay(song.id)}
             >

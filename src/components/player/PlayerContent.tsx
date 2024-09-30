@@ -157,7 +157,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
         */}
         <div className='flex flex-row gap-x-1 justify-between w-full'>
           <ControlButton className='w-auto flex flex-row items-center mx-auto'>
-            <BsVolumeDownFill size={30} className='text-slate-100 opacity-50 hover:opacity-100 transition'/>
+            <BsVolumeDownFill size={30} className='text-slate-100 hover:opacity-100 transition opacity-0'/>
           </ControlButton>
 
           <div className='flex flex-row gap-x-6 w-auto items-center'>
@@ -168,11 +168,11 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
                 className='text-slate-100 opacity-50 hover:opacity-100 transition'
               />
             </ControlButton>
-            <ControlButton className='rounded-full bg-white/80 justify-center items-center'>
+            <ControlButton >
               <Icon 
                 onClick={handlePlay}
                 size={30} 
-                className='text-black opacity-70 hover:opacity-100 transition'
+                className='text-white opacity-70 hover:opacity-100 transition'
               />
             </ControlButton>
 
