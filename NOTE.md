@@ -74,3 +74,5 @@ export default SupabaseProvider;
 ## npm i react-spinners
 
 ## npm i sharp （自动优化next/image）
+
+## npx shadcn@latest add select

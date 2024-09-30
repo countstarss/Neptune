@@ -3,10 +3,12 @@ import { usePathname } from 'next/navigation';
 import React, { useMemo } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import { HiHome } from 'react-icons/hi';
-import Box from './SideBox';
-import Library from './Library';
-import SideBarItem from './SideBarItem';
+import Box from './_components/SideBox';
+import Library from './_components/Library';
+import SideBarItem from './_components/SideBarItem';
 import { Song } from '@/lib/types';
+import LibrarySwitcher from './_components/LibrarySwitcher';
+import { categories } from '@/lib/categories';
 
 interface SidebarProps {
   // You can define any props needed here
@@ -18,6 +20,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   children,
   userSongs
 }) => {
+
   const pathName = usePathname()
   const routes = useMemo(() => [
     {
@@ -58,7 +61,19 @@ const Sidebar: React.FC<SidebarProps> = ({
           </div>
         </Box>
         <Box className='overflow-y-auto h-full relative'>
-          <Library songs={userSongs}/>
+          <div className='px-2 pt-2'>
+            <LibrarySwitcher 
+              categories={categories}
+            />
+          </div>
+          
+          {/* 
+          // MARK: 把用户的songs，专辑，收藏，等等分类上传，也就是说全部获取一遍
+          // MARK: 专辑是多个Song[],结构不同
+          */}
+          <Library 
+            userSongs={userSongs}
+          />
         </Box>
       </div>
       {/* 
