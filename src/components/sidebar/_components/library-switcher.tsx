@@ -12,8 +12,8 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { IconType } from 'react-icons'
-import { Bs2Circle } from 'react-icons/bs'
 import { TbSquareRoundedPlus } from 'react-icons/tb'
+import { useLibraryContext } from '@/hooks/useLibraryContext'
 
 interface LibrarySwitcherProps {
   categories: {
@@ -27,7 +27,6 @@ const LibrarySwitcher = ({
   categories
 }: LibrarySwitcherProps) => {
 
-
   // MARK: OpenModal
   const { user } = useUser()
   const authModal = useAuthModal()
@@ -39,20 +38,24 @@ const LibrarySwitcher = ({
       return authModal.onOpen()
     }
     console.log('ONCLICK')
-
     return uploadModal.onOpen()
   }
 
-  const [selectedCategory, setSelectedCategory] = React.useState<string>(
-    categories[0].categoryId
-  )
+  const { selectedCategory, setSelectedCategory } = useLibraryContext();
 
   // const Icon = Bs2Circle
-  const Icon = categories[Number(selectedCategory) - 1].icon
+  // const Icon = categories[Number(selectedCategory) - 1].icon
+
+  const handleCategoryChange = (categoryId:string) => {
+    const newCategory = categories.find(category => category.categoryId === categoryId);
+    if (newCategory) {
+      setSelectedCategory(newCategory); // 设置完整的 category 对象
+    }
+  }
 
   return (
     <div className='flex flex-row gap-2 items-center justify-center mx-2 ml-3'>
-      <Select defaultValue={selectedCategory} onValueChange={setSelectedCategory}>
+      <Select defaultValue={selectedCategory.categoryId} onValueChange={handleCategoryChange}>
         <SelectTrigger
           className={cn(
             `flex items-center gap-2 
@@ -70,21 +73,28 @@ const LibrarySwitcher = ({
           )}
           aria-label="Select account"
         >
+          {/* 
+          MARK: SelectValue
+          */}
           <SelectValue placeholder="Select an account">
-            <Icon className='text-white font-bold text-lg' size={24}/>
+            <selectedCategory.icon className='text-lg font-bold scale-125 text-white' size={30}/>
             <span className={cn("ml-2 text-white text-lg font-bold select-none", false && "hidden")}>
               {
-                categories.find((category) => category.categoryId === selectedCategory)
+                categories.find((category) => category === selectedCategory)
                   ?.label
               }
             </span>
           </SelectValue>
         </SelectTrigger>
+
+        {/* 
+        MARK: SelectContent
+        */}
         <SelectContent>
           {categories.map((category) => (
             <SelectItem key={category.categoryId} value={category.categoryId} >
               <div className="flex items-center gap-3 [&_svg]:h-4 [&_svg]:w-4 [&_svg]:shrink-0 [&_svg]:text-foreground">
-                <category.icon />
+                <category.icon size={30} className='text-lg font-bold scale-125'/>
                 <span className={cn("ml-2 text-md", false && "hidden")}>
                   {category.label}
                 </span>
@@ -98,7 +108,7 @@ const LibrarySwitcher = ({
         size={34}
         onClick={() => onClick()}
         className='
-          text-neutral-400
+          text-neutral-300
           cursor-pointer
           hover:text-white
           hover:scale-110
@@ -107,28 +117,6 @@ const LibrarySwitcher = ({
           rounded-lg'
       />
     </div>
-    
-    // <div className='inline-flex items-center justify-between px-5 pt-4 w-full absolute top-0'>
-    //   <div className='inline-flex items-center gap-x-2 w-full'>
-    //     <TbPlaylist className='text-neutral-400' size={26} />
-    //     <h1 className='
-    //             text-neutral-400
-    //             font-medium
-    //             text-md
-    //           '>
-    //       Your Library
-    //     </h1>
-    //   </div>
-    //   <AiOutlinePlus
-    //     size={26}
-    //     onClick={() => onClick()}
-    //     className='text-neutral-400
-    //             cursor-pointer
-    //             hover:text-white
-    //             transition
-    //           '
-    //   />
-    // </div>
   )
 }
 

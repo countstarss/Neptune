@@ -1,5 +1,4 @@
-
-import { Subscription, UserDetails } from '@/lib/types';
+import { UserDetails } from '@/lib/types';
 import { User } from '@supabase/auth-helpers-nextjs';
 import { 
   useUser as useSupaUser
@@ -14,7 +13,6 @@ type UserContextType = {
   user: User | null;
   userDetails: UserDetails | null;
   isLoading:boolean;
-  subscription: Subscription | null;
 }
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -38,7 +36,6 @@ export const UserContextProvider= (props: Props) => {
   const accessToken = session?.access_token ?? null
   const [isLoadingData,setIsLoadingData] = useState(false)
   const [userDetails,setUserDetails] = useState<UserDetails | null>(null)
-  const [subscription,setSubscription] = useState<Subscription | null>(null)
 
   //NOTE: 定义获取内容方法 
   const getUserDetails = () => supabase.from('users').select('*').single()
@@ -50,30 +47,24 @@ export const UserContextProvider= (props: Props) => {
       .single()
 
   useEffect(() => {
-    if(user && !isLoadingData && !userDetails && !subscription) {
+    if(user && !isLoadingData && !userDetails) {
       setIsLoadingData(true)
 
-      Promise.allSettled([getUserDetails(),getSubscription()]).then(
+      Promise.allSettled([getUserDetails()]).then(
         (result) => {
           const userDetailsPromise = result[0]
-          const subscriptionPromise = result[1]
 
           if(userDetailsPromise.status === "fulfilled") {
             setUserDetails(userDetailsPromise.value.data as UserDetails)
-          }
-
-          if(subscriptionPromise.status === "fulfilled") {
-            setSubscription(subscriptionPromise.value.data as Subscription)
           }
 
           setIsLoadingData(false)
       })
     } else if(!user && !isLoadingUser && !isLoadingData) {
       setUserDetails(null)
-      setSubscription(null)
     }
 
-  },[user,isLoadingUser, isLoadingData, subscription, userDetails])
+  },[user,isLoadingUser, isLoadingData, userDetails])
 
 
   const value = {
@@ -81,7 +72,6 @@ export const UserContextProvider= (props: Props) => {
     user,
     userDetails,
     isLoading: isLoadingData || isLoadingUser,
-    subscription
   };
 
   return <UserContext.Provider value={value} {...props} />

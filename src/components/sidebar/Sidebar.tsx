@@ -7,18 +7,19 @@ import Box from './_components/SideBox';
 import Library from './_components/Library';
 import SideBarItem from './_components/SideBarItem';
 import { Song } from '@/lib/types';
-import LibrarySwitcher from './_components/LibrarySwitcher';
-import { categories } from '@/lib/categories';
+import { LibraryProvider } from '@/hooks/useLibraryContext';
 
 interface SidebarProps {
   // You can define any props needed here
   children:React.ReactNode
-  userSongs:Song[]
+  userSongs:Song[],
+  userLikedSongs:Song[]
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ 
   children,
-  userSongs
+  userSongs,
+  userLikedSongs
 }) => {
 
   const pathName = usePathname()
@@ -61,19 +62,15 @@ const Sidebar: React.FC<SidebarProps> = ({
           </div>
         </Box>
         <Box className='overflow-y-auto h-full relative'>
-          <div className='px-2 pt-2'>
-            <LibrarySwitcher 
-              categories={categories}
-            />
-          </div>
-          
           {/* 
           // MARK: 把用户的songs，专辑，收藏，等等分类上传，也就是说全部获取一遍
           // MARK: 专辑是多个Song[],结构不同
           */}
-          <Library 
-            userSongs={userSongs}
-          />
+          <LibraryProvider userSongs={userSongs} userLikedSongs={userLikedSongs}>
+            <Library 
+              // userSongs={userSongs}
+            />
+          </LibraryProvider>
         </Box>
       </div>
       {/* 

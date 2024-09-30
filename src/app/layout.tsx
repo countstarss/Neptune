@@ -8,6 +8,7 @@ import ModalProvider from "@/provider/ModalProvider";
 import ToasterProvider from "@/provider/toaster-provider";
 import { getSongsByUserId } from "@/actions/getSongsByUserId";
 import Player from "@/components/player/Player";
+import { getLikedSongs } from "@/actions/getLikedSongs";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -36,6 +37,7 @@ export default async function RootLayout({
 }>) {
 
   const userSongs = await getSongsByUserId()
+  const userLikedSongs = await getLikedSongs()
 
   return (
     <html lang="en">
@@ -46,6 +48,7 @@ export default async function RootLayout({
             <ModalProvider />
             <Sidebar 
               userSongs={userSongs}
+              userLikedSongs={userLikedSongs}
             >
               {children}
               <Player />
